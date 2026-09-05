@@ -1,0 +1,139 @@
+# ============================================================
+# ROAD SOS COMMON BIDIRECTIONAL DESIGN
+# Real Digital Boolean Board / XC7S50-CSGA324-1
+#
+# SAME XDC FOR BOTH FPGAs.
+# The RTL top-level port names MUST match this file exactly.
+# ============================================================
+
+# ============================================================
+# CLOCK
+# ============================================================
+
+set_property -dict {PACKAGE_PIN F14 IOSTANDARD LVCMOS33} [get_ports clk]
+create_clock -period 10.000 -name sys_clk [get_ports clk]
+
+# ============================================================
+# BUTTONS
+# BTN0 = reset
+# BTN1 = send emergency packet
+# BTN2 = accept received packet / send ACK
+# BTN3 = clear received information
+# ============================================================
+
+set_property -dict {PACKAGE_PIN J2 IOSTANDARD LVCMOS33} [get_ports rst]
+set_property -dict {PACKAGE_PIN J5 IOSTANDARD LVCMOS33} [get_ports emergency_button]
+set_property -dict {PACKAGE_PIN H2 IOSTANDARD LVCMOS33} [get_ports accept_button]
+set_property -dict {PACKAGE_PIN J1 IOSTANDARD LVCMOS33} [get_ports clear_button]
+
+# ============================================================
+# EVENT ID
+# SW0..SW7
+# ============================================================
+
+set_property -dict {PACKAGE_PIN V2 IOSTANDARD LVCMOS33} [get_ports {event_id[0]}]
+set_property -dict {PACKAGE_PIN U2 IOSTANDARD LVCMOS33} [get_ports {event_id[1]}]
+set_property -dict {PACKAGE_PIN U1 IOSTANDARD LVCMOS33} [get_ports {event_id[2]}]
+set_property -dict {PACKAGE_PIN T2 IOSTANDARD LVCMOS33} [get_ports {event_id[3]}]
+set_property -dict {PACKAGE_PIN T1 IOSTANDARD LVCMOS33} [get_ports {event_id[4]}]
+set_property -dict {PACKAGE_PIN R2 IOSTANDARD LVCMOS33} [get_ports {event_id[5]}]
+set_property -dict {PACKAGE_PIN R1 IOSTANDARD LVCMOS33} [get_ports {event_id[6]}]
+set_property -dict {PACKAGE_PIN P2 IOSTANDARD LVCMOS33} [get_ports {event_id[7]}]
+
+# ============================================================
+# USB-UART
+# FPGA TX -> PC RX
+# PC TX -> FPGA RX
+# ============================================================
+
+set_property -dict {PACKAGE_PIN V12 IOSTANDARD LVCMOS33} [get_ports uart_tx]
+set_property -dict {PACKAGE_PIN U11 IOSTANDARD LVCMOS33} [get_ports uart_rx]
+
+# ============================================================
+# RGB0
+# RED   = emergency/send request
+# GREEN = packet generated/transmitted
+# BLUE  = packet received
+# ============================================================
+
+set_property -dict {PACKAGE_PIN V6 IOSTANDARD LVCMOS33} [get_ports led_emergency]
+set_property -dict {PACKAGE_PIN V4 IOSTANDARD LVCMOS33} [get_ports led_packet]
+set_property -dict {PACKAGE_PIN U6 IOSTANDARD LVCMOS33} [get_ports led_rx]
+
+# ============================================================
+# RGB1
+# RED   = UART TX busy
+# GREEN = TX completed
+# BLUE  = ACK received
+# ============================================================
+
+set_property -dict {PACKAGE_PIN U3 IOSTANDARD LVCMOS33} [get_ports led_tx]
+set_property -dict {PACKAGE_PIN V3 IOSTANDARD LVCMOS33} [get_ports led_done]
+set_property -dict {PACKAGE_PIN V5 IOSTANDARD LVCMOS33} [get_ports led_ack]
+
+# ============================================================
+# LD0..LD15
+# Received vehicle ID.
+# Before a valid packet is received, local VEHICLE_ID is shown.
+# ============================================================
+
+set_property -dict {PACKAGE_PIN G1 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[0]}]
+set_property -dict {PACKAGE_PIN G2 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[1]}]
+set_property -dict {PACKAGE_PIN F1 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[2]}]
+set_property -dict {PACKAGE_PIN F2 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[3]}]
+set_property -dict {PACKAGE_PIN E1 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[4]}]
+set_property -dict {PACKAGE_PIN E2 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[5]}]
+set_property -dict {PACKAGE_PIN E3 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[6]}]
+set_property -dict {PACKAGE_PIN E5 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[7]}]
+set_property -dict {PACKAGE_PIN E6 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[8]}]
+set_property -dict {PACKAGE_PIN C3 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[9]}]
+set_property -dict {PACKAGE_PIN B2 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[10]}]
+set_property -dict {PACKAGE_PIN A2 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[11]}]
+set_property -dict {PACKAGE_PIN B3 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[12]}]
+set_property -dict {PACKAGE_PIN A3 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[13]}]
+set_property -dict {PACKAGE_PIN B4 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[14]}]
+set_property -dict {PACKAGE_PIN A4 IOSTANDARD LVCMOS33} [get_ports {debug_vehicle_id[15]}]
+
+# ============================================================
+# RIGHT 7-SEGMENT DISPLAY
+# CA, CB, CC, CD, CE, CF, CG, DP
+# Active LOW
+# ============================================================
+
+set_property -dict {PACKAGE_PIN F4 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[0]}]
+set_property -dict {PACKAGE_PIN J3 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[1]}]
+set_property -dict {PACKAGE_PIN D2 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[2]}]
+set_property -dict {PACKAGE_PIN C2 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[3]}]
+set_property -dict {PACKAGE_PIN B1 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[4]}]
+set_property -dict {PACKAGE_PIN H4 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[5]}]
+set_property -dict {PACKAGE_PIN D1 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[6]}]
+set_property -dict {PACKAGE_PIN C1 IOSTANDARD LVCMOS33} [get_ports {debug_event_display[7]}]
+
+# ============================================================
+# ASYNCHRONOUS INPUTS / UART
+# ============================================================
+
+set_false_path -from [get_ports rst]
+set_false_path -from [get_ports emergency_button]
+set_false_path -from [get_ports accept_button]
+set_false_path -from [get_ports clear_button]
+set_false_path -from [get_ports uart_rx]
+set_false_path -to [get_ports uart_tx]
+
+# ============================================================
+# FPGA CONFIGURATION
+# ============================================================
+
+set_property CFGBVS VCCO [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
+
+# ============================================================
+# IMPORTANT:
+# There are intentionally NO constraints for:
+#   led_busy
+#   led_crc_fail
+#
+# Those are no longer top-level physical ports.
+# packet_busy remains an internal RTL signal.
+# CRC failure is indicated by the 7-segment DP.
+# ============================================================
