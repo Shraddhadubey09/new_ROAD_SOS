@@ -1,3 +1,5 @@
+
+
 # ============================================================
 # ROAD SOS COMMON BIDIRECTIONAL DESIGN
 # Real Digital Boolean Board / XC7S50-CSGA324-1
@@ -46,8 +48,8 @@ set_property -dict {PACKAGE_PIN P2 IOSTANDARD LVCMOS33} [get_ports {event_id[7]}
 # PC TX -> FPGA RX
 # ============================================================
 
-set_property -dict {PACKAGE_PIN V12 IOSTANDARD LVCMOS33} [get_ports uart_tx]
-set_property -dict {PACKAGE_PIN U11 IOSTANDARD LVCMOS33} [get_ports uart_rx]
+set_property -dict {PACKAGE_PIN U11 IOSTANDARD LVCMOS33} [get_ports uart_tx]
+set_property -dict {PACKAGE_PIN V12 IOSTANDARD LVCMOS33} [get_ports uart_rx]
 
 # ============================================================
 # RGB0
@@ -137,3 +139,8 @@ set_property CONFIG_VOLTAGE 3.3 [current_design]
 # packet_busy remains an internal RTL signal.
 # CRC failure is indicated by the 7-segment DP.
 # ============================================================
+
+
+
+
+
